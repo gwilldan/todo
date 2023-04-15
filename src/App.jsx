@@ -1,12 +1,16 @@
 import { useState } from 'react'
-import './App.css'
+
+import {Home, Todo} from "./ComponentExport"
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      APP.JSX
+    <div className=' bg-white-BG text-black-BG font-monserrati h-screen'>
+
+     {/* <Home /> */}
+     <Todo />
+
     </div>
   )
 }
