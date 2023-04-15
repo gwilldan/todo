@@ -6,7 +6,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className=' bg-white-BG text-black-BG font-monserrati h-screen'>
+    <div className=' bg-white-BG text-black-BG font-monserrati'>
 
      {/* <Home /> */}
      <Todo />
