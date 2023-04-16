@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 //icons
 import {FiMenu, FiSearch} from "react-icons/fi"
@@ -10,12 +10,30 @@ import {FaLink} from "react-icons/fa"
 import photo from "../images/lance (1).png"
 
 function Todo() {
+
+    const[todoReveal, setTodoReveal] = useState(false)
+    const[inProgressReveal, setInprogress] = useState(false)
+    const[doneReveal, setDoneReveal] = useState(false)
+
+    const makeReveal =(id) => {
+        if(id === 1 ) {
+            setTodoReveal(!todoReveal)
+        }
+        if(id === 2 ) {
+            setInprogress(!inProgressReveal)
+        }
+        if(id === 3 ) {
+            setDoneReveal(!doneReveal)
+        }
+    }
+
+
   return (
-    <div className=''>
+    <div className=' pb-10'>
 
         {/* NAV BAR */}
         <div className='sticky w-full top-0 flex items-center gap-4 px-2 py-3 bg-white-BG'>
-            <button>
+            <button >
                 <FiMenu className=' text-2xl' />
             </button>
             <h1 className=' font-bold text-lg'>Penguin</h1>
@@ -55,16 +73,16 @@ function Todo() {
             <div className=' px-2 flex items-center justify-between h-[50px]'>
                 <div className=' flex items-center gap-2'>
                     <HiOutlineRectangleGroup className=' text-yellowBG font-bold text-xl '/>
-                    <h2 className=' text-sm'>2 Tasks</h2>
+                    <h2 className=' text-sm'>1 Tasks</h2>
                 </div>
-                <button>
+                <button onClick={() => makeReveal(1)}>
                     <BsThreeDots  className=' text-2xl'/>
                 </button>
             </div>
 
-            {/* list of Tasks */}
-            <div >
-                <div className=' bg-yellowBG mx-2 text-sm px-4 py-2 flex flex-col justify-between'>
+            {/* list of Tasks - this container controlls the tasks toggling */}
+            <div className={` ${todoReveal ? `` : `hidden` }`}>
+                <div className='  bg-yellowBG mx-2 text-sm px-4 py-2 flex flex-col justify-between'>
                     <div className=' mb-6'>
                         <h1 className=' font-semibold font-base mb-2'>Landing page</h1> 
                         <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
@@ -80,7 +98,7 @@ function Todo() {
                         </div>
                         <div className=' flex items-center gap-2'>
                             <FaLink />
-                            <h2>1</h2>
+                            <h2>5</h2>
                         </div>
                     </div>
                 </div>
@@ -91,7 +109,7 @@ function Todo() {
         </div>
 
         {/* Task In progress */}
-        <div className=' px-6 mt-4'>
+        <div className=' px-6 mt-4 pb-10'>
             <div className=' bg-blueBG px-4 rounded-t-2xl h-[60px] flex items-center gap-4'>
                 <div>
                     <RiTodoLine className=' text-4xl' />
@@ -105,19 +123,18 @@ function Todo() {
             <div className=' px-2 flex items-center justify-between h-[50px]'>
                 <div className=' flex items-center gap-2'>
                     <HiOutlineRectangleGroup className=' text-blueBG font-bold text-xl '/>
-                    <h2 className=' text-sm'>2 Tasks</h2>
+                    <h2 className=' text-sm'>3 Tasks</h2>
                 </div>
-                <button>
+                <button onClick={() => makeReveal(2)}>
                     <BsThreeDots  className=' text-2xl'/>
                 </button>
             </div>
 
-            {/* list of Tasks */}
-            <div >
+            {/* list of Tasks - container to toggle the tasks*/}
+            <div className={inProgressReveal ? '': 'hidden'} >
                 <div className=' bg-blueBG mx-2 text-sm px-4 py-2 flex flex-col justify-between mb-6'>
                     <div className=' mb-6'>
                         <h1 className=' font-semibold font-base mb-2'>Landing page</h1> 
-                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
                         <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
                         <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
                         <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
@@ -130,7 +147,27 @@ function Todo() {
                         </div>
                         <div className=' flex items-center gap-2'>
                             <FaLink />
-                            <h2>1</h2>
+                            <h2>4</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=' bg-blueBG mx-2 text-sm px-4 py-2 flex flex-col justify-between mb-6'>
+                    <div className=' mb-6'>
+                        <h1 className=' font-semibold font-base mb-2'>Landing page</h1> 
+                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
+                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
+                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
+                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
+                    </div>
+
+                    <div className=' flex justify-between items-center'>
+                        <div>
+                            +
+                        </div>
+                        <div className=' flex items-center gap-2'>
+                            <FaLink />
+                            <h2>4</h2>
                         </div>
                     </div>
                 </div>
@@ -151,38 +188,61 @@ function Todo() {
                         </div>
                         <div className=' flex items-center gap-2'>
                             <FaLink />
-                            <h2>1</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div className=' bg-blueBG mx-2 text-sm px-4 py-2 flex flex-col justify-between mb-6'>
-                    <div className=' mb-6'>
-                        <h1 className=' font-semibold font-base mb-2'>Landing page</h1> 
-                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
-                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
-                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
-                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
-                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
-                    </div>
-
-                    <div className=' flex justify-between items-center'>
-                        <div>
-                            +
-                        </div>
-                        <div className=' flex items-center gap-2'>
-                            <FaLink />
-                            <h2>1</h2>
+                            <h2>5</h2>
                         </div>
                     </div>
                 </div>
             </div>
-            
+        </div>
+
+
+         {/* DONE */}
+        <div className=' px-6 mt-4 mb-10'>
+            <div className=' bg-purpleBG px-4 rounded-t-2xl h-[60px] flex items-center gap-4'>
+                <div>
+                    <RiTodoLine className=' text-4xl' />
+                </div>
+                <div>
+                    <h1 className=' font-semibold text-base'>To-Do</h1>
+                    <h2 className=' py-[1px] text-sm'>Last Update 7 Jan, 12:20pm</h2>
+                </div>
+            </div>
+
+            <div className=' px-2 flex items-center justify-between h-[50px]'>
+                <div className=' flex items-center gap-2'>
+                    <HiOutlineRectangleGroup className=' text-purple font-bold text-xl '/>
+                    <h2 className=' text-sm'>1 Tasks</h2>
+                </div>
+                <button onClick={() => makeReveal(3)}>
+                    <BsThreeDots  className=' text-2xl'/>
+                </button>
+            </div>
+
+            {/* list of Tasks - this container controlls the tasks toggling */}
+            <div className={` ${doneReveal ? `` : `hidden` }`}>
+                <div className='  bg-purpleBG mx-2 text-sm px-4 py-2 flex flex-col justify-between'>
+                    <div className=' mb-6'>
+                        <h1 className=' font-semibold font-base mb-2'>Landing page</h1> 
+                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
+                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
+                        <button className=' flex items-center gap-2'> <div className=' bg-black-BG w-1 h-1 rounded-full'></div> Draw </button>
+                    </div>
+
+                    <div className=' flex justify-between items-center'>
+                        <div>
+                            +
+                        </div>
+                        <div className=' flex items-center gap-2'>
+                            <FaLink />
+                            <h2>3</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             
 
         </div>
-
-         
         
 
     </div>

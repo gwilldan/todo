@@ -19,7 +19,7 @@ export default {
 
         'yellowBG': '#F9DB38',
         'blueBG': '#77D4E5',
-        'purpleBG': '#77D4E5',
+        'purpleBG': '#7647E0',
 
         'white': {
           'BG':'#F5F5F5',
